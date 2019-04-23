@@ -27,7 +27,7 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size)
     rapidjson::StringBuffer sb;
     rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(sb);
     document.Accept(writer);
-    str = sb.GetString();
+    std::string str = sb.GetString();
 #ifdef MSAN
     if ( str.size() ) {
         __msan_check_mem_is_initialized(str.data(), str.size());
